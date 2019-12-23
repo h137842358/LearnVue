@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id='app'>
+        <h1>{{msg}}</h1>
+        <input type="text" v-model:value="msg">
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data() {
+            return {
+                msg: '大家都是好学生，爱敲代码，爱学习，爱思考，简直是完美，没瑕疵'
+            }
+        },
+        methods: {
+
+        },
+    })
+</script>
+
+</html>

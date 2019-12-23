@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <p v-cloak>{{msg}}</p>
+        <p v-text='msg'></p>
+        <input type="button" value="按钮" v-on:click='show'>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data() {
+            return {
+                msg: "123"
+            }
+        },
+        methods: {
+            show() {
+                alert('hello');
+            }
+        },
+    })
+</script>
+
+</html>

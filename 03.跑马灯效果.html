@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id='app'>
+        <input type="button" value="浪起来" @click="lang">
+        <input type="button" value="低调" @click='stop'>
+        <h1>{{msg}}</h1>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data() {
+            return {
+                msg: '猥琐发育，别浪~~~',
+                handel: null
+            }
+        },
+        methods: {
+            lang() {
+                if (this.handel != null)
+                    return
+                this.handel = setInterval(() => {
+                    var start = this.msg.substring(0, 1)
+                    var end = this.msg.substring(1)
+                    this.msg = end + start
+                }, 500);
+            },
+            stop() {
+                clearInterval(this.handel)
+                this.handel = null
+                this.msg = '猥琐发育，别浪~~~'
+            }
+        },
+    })
+</script>
+
+</html>
