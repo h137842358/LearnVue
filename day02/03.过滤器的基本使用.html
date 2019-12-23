@@ -11,12 +11,12 @@
 
 <body>
     <div id='app'>
-        <p>{{msg|msgFormat}}</p>
+        <p>{{msg|msgFormat('疯狂')}}</p>
     </div>
 </body>
 <script>
-    Vue.filter('msgFormat', function (msg) {
-        return msg.replace(/单纯/g, '邪恶')
+    Vue.filter('msgFormat', function (msg, arg) {
+        return msg.replace(/单纯/g, arg)
     })
 
     var vm = new Vue({
