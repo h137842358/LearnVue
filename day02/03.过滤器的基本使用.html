@@ -2,31 +2,31 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <script src="../node_modules/vue/dist/vue.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../node_modules/vue/dist/vue.min.js"></script>
 </head>
 
 <body>
-    <div id='app'>
-        <p>{{msg|msgFormat('疯狂')}}</p>
-    </div>
+  <div id='app'>
+    <p>{{msg|msgFormat('疯狂')}}</p>
+  </div>
 </body>
 <script>
-    Vue.filter('msgFormat', function (msg, arg) {
-        return msg.replace(/单纯/g, arg)
-    })
+  Vue.filter('msgFormat', function (msg, arg) {
+    return msg.replace(/单纯/g, arg)
+  })
 
-    var vm = new Vue({
-        el: '#app',
-        data() {
-            return {
-                msg: '曾经，我也是一个单纯的男生，单纯到我问了一个单纯的问题，世界上最单纯的男生是谁'
-            }
-        },
-    })
+  var vm = new Vue({
+    el: '#app',
+    data() {
+      return {
+        msg: '曾经，我也是一个单纯的男生，单纯到我问了一个单纯的问题，世界上最单纯的男生是谁'
+      }
+    },
+  })
 </script>
 
 </html>
