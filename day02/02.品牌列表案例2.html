@@ -25,12 +25,12 @@
             </label>
             <label>
                 name:
-                <input type="text" class="form-control" v-model="name">
+                <input type="text" class="form-control" v-model="name" @keyup.f2='add'>
             </label>
             <input type="button" value="添加" @click='add' class="btn btn-primary">
             <label>
                 搜索关键字:
-                <input type="text" name="" v-model="searchTxt" placeholder="查询">
+                <input type="text" name="" v-model="searchTxt" placeholder="查询" v-focus v-color="'blue'">
             </label>
 
         </div>
@@ -56,6 +56,49 @@
 <script>
     Vue.filter('dateFormat', function (ctime) {
         return moment(ctime).format('YYYY-MM-DD HH:mm:ss')
+    })
+
+    //自定义全局按键修饰符
+    Vue.config.keyCodes = {
+        f2: 113
+    }
+
+    //使用Vue.directive()定义全局的指令
+    //其中参数1：指令的名称，注意，在定义的时候，指令的名称前面，不需要加v-前缀，
+    //但是在调用的时候，必须在指令名称前加上v-前缀来进行调用
+    //参数2:是一个对象，在这个对象身上,有一些指令相关的函数，这些函数可以在特定的阶段，执行相关的操作
+    Vue.directive('focus', {
+        bind: function (el) { //每当指令绑定到元素上的时候，会立即执行，只执行一次
+            //注意：在每个函数中 ，第一个参数永远是el,表示被绑定了指令的那个元素，这个el参数，是一个原生的JS对象
+            //在元素刚绑定了指令的时候，还没有插入到DOM中去，这时候，调用focus方法没有作用
+            //因为，一个元素，只有插入DOM之后，才能获取焦点
+            //el.focus()
+        },
+        inserted: function (el) { //inserted表述元素插入到Dom中的时候，会执行，触发一次
+            el.focus()
+            //和js行为有关的操作，最好在inserted中去执行，防止Js行为不生效
+        },
+        updated: function (el) { //当Vnode更新的时候，会执行updated,可能会触发多次
+
+        },
+    })
+
+
+    Vue.directive('color', {
+        //样式，只要通过指令绑定给了元素，不管这个元素有没有被插入到页面中去，这个元素肯定有了一个内联的样式
+        //将来元素肯定会显示到页面中 ，这时候，浏览器的渲染引擎必然会解析样式，应用给这个元素
+        bind: function (el, binding) {
+            // el.style.color = 'red'
+            //和样式相关的操作，一般都可以在bind执行
+            console.log(binding.value);
+
+            el.style.color = binding.value
+        },
+        inserted: function (el) { //inserted表述元素插入到Dom中的时候，会执行，触发一次
+        },
+        updated: function (el) { //当Vnode更新的时候，会执行updated,可能会触发多次
+
+        },
     })
 
     var vm = new Vue({
@@ -110,6 +153,30 @@
                 })
             }
         },
+
+        //定义私有过滤器，过滤器有两个条件 【过滤器名称和处理函数】
+        filters: {
+            //过滤器调用的时候，采用的是就近原则，如果私有过滤器和全局过滤器名称一致，这时候优先调用私有过滤器
+            dateFormat: function (dateStr) {
+                //补充：
+                var dt = new Date()
+                var m = (dt.getMonth() + 1).toString().padStart(2, '0')
+
+                return moment(dateStr).format('YYYY-MM-DD HH:mm:ss')
+            }
+        },
+        directives: { //定义私有的指令
+            'fontweight': {
+                bind: function (el, binding) {
+                    el.style.fontweight = binding.value
+                }
+            },
+
+            'fontsize': function (el, binding) { //注意：这个function等同于把代码写到了bind和updated中去
+                el.style.fontSize = parseInt(binding.value) + 'px'
+            }
+
+        }
     })
 </script>
 
