@@ -1,5 +1,24 @@
 {
   "dependencies": {
-    "moment": "^2.24.0"
-  }
+    "moment": "^2.24.0",
+    "vue-resource": "^1.5.1"
+  },
+  "name": "learn-vue",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/h137842358/LearnVue.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/h137842358/LearnVue/issues"
+  },
+  "homepage": "https://github.com/h137842358/LearnVue#readme",
+  "description": ""
 }
