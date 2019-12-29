@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../node_modules/vue/dist/vue.min.js"></script>
+  <script src="../node_modules/vue-resource/dist/vue-resource.min.js"></script>
+  <script src="../node_modules/moment/moment.js"></script>
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div id='app'>
+    <table class="table table-bordered table-inverse table-responsive">
+      <thead class="thead-inverse">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Ctime</th>
+          <th>Operation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="item in list" :key="item.id">
+          <td scope="row">{{item.id}}</td>
+          <td>{{item.name}}</td>
+          <td>{{item.Ctime|dateFormat}}</td>
+          <td><input type="checkbox" name="" id=""></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="form-group">
+      <label for="">ID:</label>
+      <input type="text" class="form-control" placeholder="" v-model="id">
+    </div>
+    <div class="form-group">
+      <label for="">Name:</label>
+      <input type="text" class="form-control" placeholder="" v-model="name">
+    </div>
+    <button type="button" class="btn btn-primary" @click='add'>添加</button>
+  </div>
+</body>
+<script>
+  var wm = new Vue({
+    el: "#app",
+    data() {
+      return {
+        id: '',
+        name: '',
+        list: [{
+            id: 1,
+            name: '奥迪',
+            ctime: new Date()
+          },
+          {
+            id: 2,
+            name: '宝马',
+            ctime: new Date()
+          }
+        ]
+      }
+    },
+    filters: {
+      dateFormat(ctime) {
+        return moment(ctime).format('YYYY-MM-DD HH:mm:ss')
+      }
+    },
+    methods: {
+      add() {
+        this.list.unshift({
+          id: this.id,
+          name: this.name,
+          ctime: new Date()
+        })
+        this.id = this.name = ''
+      }
+    },
+    created() {
+      this.$http.get('http://vue.studyit.io/api/getprodlist').then(function (result) {
+        if (result.body.status === 0) {
+          this.list = result.body.message
+        } else {
+          alert('获取数据失败！')
+        }
+      })
+    },
+
+  })
+</script>
+
+</html>
