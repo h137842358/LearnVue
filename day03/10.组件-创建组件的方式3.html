@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../node_modules/vue/dist/vue.min.js"></script>
+</head>
+
+<body>
+  <div id='app'>
+    <my-com1></my-com1>
+  </div>
+
+  <div id='app2'>
+    <my-com2></my-com2>
+  </div>
+</body>
+
+<template id="tmp1">
+  <div>
+    <h1>这是通过template 元素，在外部定义的组件结构，这个方式，有代码的智能提示和高亮</h1>
+    <h4>好用，不错</h4>
+  </div>
+</template>
+
+
+<template id="tmp2">
+  <div>
+    <h1>这是私有的template元素</h1>
+    <h4>好用，不错</h4>
+  </div>
+</template>
+<script>
+  // 
+  Vue.component('myCom1', {
+    template: '#tmp1'
+  })
+
+  var vm = new Vue({
+    el: '#app',
+    data() {
+      return {
+
+      }
+    },
+    methods: {
+
+    },
+  })
+
+
+  var vm2 = new Vue({
+    el: '#app2',
+    data() {
+      return {
+
+      }
+    },
+    methods: {
+
+    },
+    //定义私有的components
+    components: {
+      'myCom2': {
+        template: '#tmp2'
+      }
+    }
+  })
+</script>
+
+</html>
