@@ -7,6 +7,18 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <script src="../node_modules/vue/dist/vue.min.js"></script>
+  <style>
+    .component-fade-enter-active,
+    .component-fade-leave-active {
+      transition: all .5s ease;
+    }
+
+    .component-fade-enter,
+    .component-fade-leave-to {
+      opacity: 0;
+      transform: translateX(150px);
+    }
+  </style>
 </head>
 
 <body>
@@ -15,7 +27,10 @@
     <a href="" @click.prevent="componentId='register'">注册</a>
     <!-- vue提供了component,来展示对应名称的组件 -->
     <!-- component是一个占位符，:is 属性，可以用来指定要展示的组件名称 -->
-    <component :is="componentId"></component>
+    <!-- 通过mode属性,设置组件切换时候的模式 -->
+    <transition name='component-fade' mode="out-in">
+      <component :is="componentId"></component>
+    </transition>
 
     <!-- 总结：当前学习了几个Vue提供的标签 -->
     <!-- component   template    transition   transition-group-->
