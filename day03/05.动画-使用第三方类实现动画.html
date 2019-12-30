@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../node_modules/vue/dist/vue.min.js"></script>
+  <link rel="stylesheet" href="../node_modules/_animate.css@3.7.2@animate.css/animate.min.css">
+  <!--入场使用bounceIn 离场bounceOut-->
+
+  <!-- 2.自定义两组样式，来控制transition内部的元素实现动画 -->
+  <style>
+    .fade-enter-active,
+    .fade-leave-active {
+      transition: all .5s ease;
+    }
+
+    .fade-enter,
+    .fade-leave-to {
+      opacity: 0;
+      transform: translateX(150px);
+    }
+
+    /* .v-enter-active,
+    .v-leave-active {
+      transition: all .5s ease;
+    }
+
+    .v-enter,
+    .v-leave-to {
+      opacity: 0;
+      transform: translateY(150px);
+    } */
+  </style>
+</head>
+
+<body>
+  <div id='app'>
+    <button type="button" class="btn btn-primary" @click='flag=!flag'>点击</button>
+    <!--需求：点击按钮，让h3显示，再点击，让h3隐藏  -->
+    <!-- 1.使用transition元素，把需要被动画控制的元素，包裹起来 -->
+    <transition name='fade'>
+      <h3 v-show="flag">这是一个H3</h3>
+    </transition>
+    <hr>
+
+    <!-- <button type="button" class="btn btn-primary" @click='flag2=!flag2'>点击2</button> -->
+    <!--需求：点击按钮，让h3显示，再点击，让h3隐藏  -->
+    <!-- 1.使用transition元素，把需要被动画控制的元素，包裹起来 -->
+    <!-- <transition>
+      <h3 v-show="flag2">这是一个H3</h3>
+    </transition> -->
+
+    <button type="button" class="btn btn-primary" @click='flag3=!flag3'>点击2</button>
+    <!-- 使用 :duration='{enter:200,leave:400}' 来分别设置入场的时长和离场的时长 -->
+    <transition enter-active-class="animated bounceIn" leave-active-class="animated bounceOut"
+      :duration='{enter:200,leave:400}'>
+      <h3 v-show="flag3">这是一个H3</h3>
+    </transition>
+
+  </div>
+</body>
+<script>
+  var vm = new Vue({
+    el: '#app',
+    data() {
+      return {
+        flag: true,
+        flag2: true,
+        flag3: true
+      }
+    },
+  })
+</script>
+
+</html>
