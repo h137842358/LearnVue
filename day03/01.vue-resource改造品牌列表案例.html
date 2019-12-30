@@ -44,6 +44,13 @@
   </div>
 </body>
 <script>
+  //如果我们通过全局配置了请求数据的接口 根域名，则，在每次单独发起http请求的时候，请求的url路径，应该以相对路径开头，前面
+  //不能带/，否则不会启用根路径做拼接
+  Vue.http.options.root = 'http://www.liulongbin.top:3005/'
+
+  //全局配置emulateJSON选项
+  Vue.http.options.emulateJSON = true
+
   var wm = new Vue({
     el: "#app",
     data() {
@@ -70,7 +77,7 @@
     },
     methods: {
       getAllList() {
-        this.$http.get('http://www.liulongbin.top:3005/api/getprodlist').then(function (result) {
+        this.$http.get('api/getprodlist').then(function (result) {
           if (result.body.status === 0) {
             this.list = result.body.message
           } else {
@@ -79,10 +86,8 @@
         })
       },
       add() {
-        this.$http.post('http://www.liulongbin.top:3005/api/addproduct', {
+        this.$http.post('api/addproduct', {
           name: this.name
-        }, {
-          emulateJSON: true
         }).then(result => {
           if (result.body.status === 0) {
             this.getAllList()
@@ -93,7 +98,7 @@
         this.id = this.name = ''
       },
       del(id) { //删除品牌列表
-        this.$http.get("http://www.liulongbin.top:3005/api/delproduct/" + id).then(result => {
+        this.$http.get("api/delproduct/" + id).then(result => {
           if (result.body.status === 0) {
             this.getAllList()
           } else {
