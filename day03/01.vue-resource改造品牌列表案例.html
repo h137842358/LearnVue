@@ -28,7 +28,7 @@
           <td scope="row">{{item.id}}</td>
           <td>{{item.name}}</td>
           <td>{{item.Ctime|dateFormat}}</td>
-          <td><input type="checkbox" name="" id=""></td>
+          <td><a href="" @click.prevent='del(item.id)'>删除</a></td>
         </tr>
       </tbody>
     </table>
@@ -69,23 +69,41 @@
       }
     },
     methods: {
+      getAllList() {
+        this.$http.get('http://www.liulongbin.top:3005/api/getprodlist').then(function (result) {
+          if (result.body.status === 0) {
+            this.list = result.body.message
+          } else {
+            alert('获取数据失败！')
+          }
+        })
+      },
       add() {
-        this.list.unshift({
-          id: this.id,
-          name: this.name,
-          ctime: new Date()
+        this.$http.post('http://www.liulongbin.top:3005/api/addproduct', {
+          name: this.name
+        }, {
+          emulateJSON: true
+        }).then(result => {
+          if (result.body.status === 0) {
+            this.getAllList()
+          } else {
+            alert("添加失败")
+          }
         })
         this.id = this.name = ''
+      },
+      del(id) { //删除品牌列表
+        this.$http.get("http://www.liulongbin.top:3005/api/delproduct/" + id).then(result => {
+          if (result.body.status === 0) {
+            this.getAllList()
+          } else {
+            alert("删除失败")
+          }
+        })
       }
     },
     created() {
-      this.$http.get('http://vue.studyit.io/api/getprodlist').then(function (result) {
-        if (result.body.status === 0) {
-          this.list = result.body.message
-        } else {
-          alert('获取数据失败！')
-        }
-      })
+      this.getAllList()
     },
 
   })
