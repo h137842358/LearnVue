@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../node_modules/vue/dist/vue.min.js"></script>
+</head>
+
+<body>
+  <div id='app'>
+    <mylogin></mylogin>
+    <mycom2></mycom2>
+  </div>
+</body>
+<template id='mycom1'>
+  <div>
+    <h3>胡伟</h3>
+  </div>
+</template>
+<script>
+  // 定义组件的时候，如果要定义全局的组件，Vue.component("组件的名称",{})
+
+
+  //通过对象字面量的形式，定义了一个组件模板对象
+  var login = {
+    template: '<h1>123456</h1>'
+  }
+  //通过Vue.component把组件模板对象，注册成为一个全局的vue组件，同时，为这个组件起了一个名称，可以让我们通过标签形式，在页面中直接引入这个组件
+  Vue.component('mylogin', login)
+
+
+  var vm = new Vue({
+    el: '#app',
+    data() {
+      return {
+
+      }
+    },
+    methods: {
+
+    },
+
+    components: {
+      'mycom2': {
+        template: "#mycom1"
+      }
+    }
+  })
+</script>
+
+</html>

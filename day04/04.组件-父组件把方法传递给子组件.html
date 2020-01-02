@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../node_modules/vue/dist/vue.min.js"></script>
+</head>
+
+<body>
+  <div id='app'>
+    <!-- 父组件向子组件传递方法，使用的是事件绑定机制；v-on,当我们自定义了一个事件属性之后
+    ，那么子组件就能够通过某些方式，来调用这个方法 -->
+    <com2 v-on:func='show'></com2>
+  </div>
+</body>
+<template id='temp1'>
+  <div>
+    <h1>这是子组件</h1>
+    <input type="button" value="这是子组件的按钮-点击它，触发父组件传递过来的func" @click="myclick">
+  </div>
+</template>
+<script>
+  new Vue({
+    el: "#app",
+    data() {
+      return {
+        datamsgFromSon: null
+      }
+    },
+    methods: {
+      show(data) {
+        console.log('调用了父组件身上的show方法----' + data);
+        this.datamsgFromSon = data
+        console.log(this.datamsgFromSon);
+      }
+    },
+    components: {
+      com2: {
+        template: '#temp1',
+        data() {
+          return {
+            sonmsg: {
+              name: '小头儿子',
+              age: 6
+            }
+          }
+        },
+        methods: {
+          myclick() {
+            //当点击子组件的按钮的时候，如何拿到父组件传递过来的func方法，并调用这个方法
+            //emit 英文原意：是触发，调用，发射的意思
+            //调用父组件的方法，并传参
+            this.$emit("func", this.sonmsg)
+          }
+        },
+      }
+    }
+  })
+</script>
+
+</html>
