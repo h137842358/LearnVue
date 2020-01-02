@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../node_modules/vue/dist/vue.min.js"></script>
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div id="app">
+    <comment-box v-on:event="loadComments"></comment-box>
+    <ul class="list-group">
+      <li class="list-group-item" v-for="(item,index) in list" :key="item.id"><span
+          class="badge">评论人:{{item.user}}</span> {{ item.content }}</li>
+    </ul>
+  </div>
+</body>
+
+<template id='tmp1'>
+  <div>
+    <div class="form-group">
+      <label for="">评论人</label>
+      <input type="text" class="form-control" v-model="user">
+
+    </div>
+    <div class="form-group">
+      <label for="">评论内容</label>
+      <textarea class="form-control" v-model="content"></textarea>
+    </div>
+    <div class="form-group">
+      <button type="button" class="btn btn-primary" @click="submit">发表评论</button>
+    </div>
+  </div>
+</template>
+<script>
+  var vm = new Vue({
+    el: '#app',
+    data() {
+      return {
+        list: [{
+            id: Date.now(),
+            user: '李白',
+            content: '天生我才必有用'
+          }, {
+            id: Date.now(),
+            user: '江小白',
+            content: '劝君更尽一杯酒'
+          },
+          {
+            id: Date.now(),
+            user: '小马',
+            content: '我姓马，风吹草低现牛羊的马'
+          }
+        ]
+      }
+    },
+    methods: {
+      loadComments() { //从本地的localStorage中，加载评论列表
+        this.list = JSON.parse(localStorage.getItem('cmts') || '[]')
+      },
+      update(data) {
+        this.list.unshift({
+          id: Date.now(),
+          user: data.user,
+          content: data.content
+        })
+      }
+    },
+    mounted() {
+      this.loadComments()
+    },
+    components: {
+      commentBox: {
+        data() {
+          return {
+            user: '',
+            content: ''
+          }
+        },
+        methods: {
+          submit() { //发表评论的方法
+            //分析：发表评论的业务逻辑
+            //1.评论数据存到哪里去？存放到了localStorage中，localStorage.setItem('cmts','')
+            //2.先阻止出一个最新的评论数据对象
+            //3.想办法，把第二步中，得到的评论对象，保存到localStorage中：
+            //3.1 localStorage只支持存放字符串数据
+            //3.2 在保存最新的评论数据之前，要先从localStorage获取到之前最新的评论数据string,转换为一个数组对象，然后，把最新的
+            //评论，push到这个数组
+            //3.3 如果获取到的localStorage中的评论字符串，为空不存在，则可以返回一个'[]'让JSON.parse去转换
+            //3.4 把最新的评论列表数组，再次调用JSON.stringify转为数组字符串，然后调用localStorage.setItem()
+
+            var comment = {
+              id: Date.now(),
+              user: this.user,
+              content: this.content
+            }
+
+            //从localStorage中获取所有的评论
+            var list = JSON.parse(localStorage.getItem('cmts') || '[]')
+            list.unshift(comment)
+
+            localStorage.setItem('cmts', JSON.stringify(list))
+
+            this.user = this.content = ''
+
+            this.$emit('event')
+
+            // if (this.user != "" || this.content != "") {
+            //   this.$emit('event', {
+            //     user: this.user,
+            //     content: this.content
+            //   })
+            //   this.user = this.content = ''
+            // }
+          }
+        },
+        template: '#tmp1'
+      }
+    }
+  })
+</script>
+
+</html>
