@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../node_modules/vue/dist/vue.js"></script>
+  <script src="../node_modules/_vue-router@3.1.3@vue-router/dist/vue-router.js"></script>
+</head>
+
+<body>
+  <div id='app'>
+    <router-link to="/login">登录</router-link>
+    <router-link to="/register">注册</router-link>
+    <router-view></router-view>
+  </div>
+</body>
+<template id='tmp1'>
+  <div>
+    <h1>登录组件</h1>
+  </div>
+</template>
+
+<template id='tmp2'>
+  <div>
+    <h1>注册组件</h1>
+  </div>
+</template>
+<script>
+  var login = {
+    template: '#tmp1'
+  }
+  var register = {
+    template: '#tmp2'
+  }
+  const router = new VueRouter({
+    routes: [{
+      path: '/',
+      redirect: '/login'
+    }, {
+      path: '/login',
+      component: login
+    }, {
+      path: '/register',
+      component: register
+    }]
+  })
+  var vm = new Vue({
+    el: '#app',
+    data() {
+      return {
+
+      }
+    },
+    methods: {
+
+    },
+    router: router,
+    watch: {
+      '$route.path': function (newVal, oldVue) {
+        // console.log(newVal + '-----' + oldVue);
+        if (newVal === '/login') {
+          console.log("欢迎进入登录界面");
+        } else if (newVal === '/register') {
+          console.log("欢迎进入注册界面");
+        }
+      }
+    },
+  })
+</script>
+
+</html>

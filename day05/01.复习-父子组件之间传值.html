@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../node_modules/vue/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id='app'>
+    <com1 v-bind:parent-msg="msg" v-on:func="show"></com1>
+  </div>
+</body>
+<template id='tmp1'>
+  <div>
+    <h1>这是子组件--{{sonMsg}}</h1>
+    <input type="button" value="向父组件传递消息" @click="myclick">
+  </div>
+</template>
+<script>
+  var vm = new Vue({
+    el: '#app',
+    data() {
+      return {
+        msg: '这是父组件的msg',
+        msgFromSon: ''
+      }
+    },
+    methods: {
+      show(data) {
+        console.log(data);
+      },
+      getmsgfromSon(data) {
+        this.msgFromSon = data
+        console.log(this.msgFromSon);
+      }
+
+    },
+    components: {
+      com1: {
+        template: '#tmp1',
+        props: [
+          'parent-msg'
+        ],
+        methods: {
+          myclick() {
+            this.$emit('func', this.sonmsg)
+          }
+        },
+        data() {
+          return {
+            sonmsg: '这是子msg'
+          }
+        },
+      }
+    }
+  })
+</script>
+
+
+</html>
