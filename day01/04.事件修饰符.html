@@ -2,63 +2,63 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <script src="./node_modules/vue/dist/vue.js"></script>
-    <style>
-        .inner {
-            height: 150px;
-            background-color: darkcyan;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../node_modules/vue/dist/vue.js"></script>
+  <style>
+    .inner {
+      height: 150px;
+      background-color: darkcyan;
+    }
+  </style>
 </head>
 
 <body>
-    <div id='app'>
-        <!--使用 .stop阻止冒泡-->
-        <!-- <div class="inner" @click='div1Handler'>
+  <div id='app'>
+    <!--使用 .stop阻止冒泡-->
+    <!-- <div class="inner" @click='div1Handler'>
             <input type="button" value="按钮" @click.stop="btnHandler">
         </div> -->
 
-        <!--使用 .prevent阻止默认行为-->
-        <!-- <a href="http://www.baidu.com" @click.prevent="linkClick">有问题，先去百度</a> -->
+    <!--使用 .prevent阻止默认行为-->
+    <!-- <a href="http://www.baidu.com" @click.prevent="linkClick">有问题，先去百度</a> -->
 
-        <!--实用 .capture实现捕获触发事件的机制-->
-        <!-- <div class="inner" @click.capture='div1Handler'>
+    <!--实用 .capture实现捕获触发事件的机制-->
+    <!-- <div class="inner" @click.capture='div1Handler'>
             <input type="button" value="按钮" @click.stop="btnHandler">
         </div> -->
 
-        <!--使用 .self实现只有点击当前元素的时候，才会触发事件处理函数-->
-        <!-- <div class="inner" @click.self='div1Handler'>
+    <!--使用 .self实现只有点击当前元素的时候，才会触发事件处理函数-->
+    <!-- <div class="inner" @click.self='div1Handler'>
             <input type="button" value="按钮" @click.stop="btnHandler">
         </div> -->
 
-        <!--使用 .once只触发一次事件处理函数-->
-        <a href="http://www.baidu.com" @click.prevent.once="linkClick">有问题，先去百度</a>
-    </div>
+    <!--使用 .once只触发一次事件处理函数-->
+    <a href="http://www.baidu.com" @click.prevent.once="linkClick">有问题，先去百度</a>
+  </div>
 </body>
 <script>
-    var vm = new Vue({
-        el: '#app',
-        data() {
-            return {
+  var vm = new Vue({
+    el: '#app',
+    data() {
+      return {
 
-            }
-        },
-        methods: {
-            div1Handler() {
-                console.log("这是触发了inner div 的点击事件");
-            },
-            btnHandler() {
-                console.log("这是触发了btn的点击事件");
-            },
-            linkClick() {
-                console.log("这是出发了a的点击事件");
-            }
-        },
-    })
+      }
+    },
+    methods: {
+      div1Handler() {
+        console.log("这是触发了inner div 的点击事件");
+      },
+      btnHandler() {
+        console.log("这是触发了btn的点击事件");
+      },
+      linkClick() {
+        console.log("这是出发了a的点击事件");
+      }
+    },
+  })
 </script>
 
 </html>

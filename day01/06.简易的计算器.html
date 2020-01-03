@@ -2,62 +2,62 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <script src="./node_modules/vue/dist/vue.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../node_modules/vue/dist/vue.js"></script>
 </head>
 
 <body>
-    <div id="app">
-        <input type="text" name="" id="" v-model='n1' @change="onChange">
+  <div id="app">
+    <input type="text" name="" id="" v-model='n1' @change="onChange">
 
-        <select name="" id="" @change='onChange()' v-model="selvalue">
-            <option value="1">+</option>
-            <option value="2">-</option>
-            <option value="3">*</option>
-            <option value="4">/</option>
-        </select>
+    <select name="" id="" @change='onChange()' v-model="selvalue">
+      <option value="1">+</option>
+      <option value="2">-</option>
+      <option value="3">*</option>
+      <option value="4">/</option>
+    </select>
 
-        <input type="text" name="" id="" v-model='n2' @change="onChange">
+    <input type="text" name="" id="" v-model='n2' @change="onChange">
 
-        <h1>{{n3}}</h1>
-    </div>
+    <h1>{{n3}}</h1>
+  </div>
 </body>
 <script>
-    var vm = new Vue({
-        el: '#app',
-        data() {
-            return {
-                n1: 3,
-                n2: 5,
-                n3: 8,
-                selvalue: "1"
-            }
-        },
-        methods: {
-            onChange() {
-                switch (this.selvalue) {
-                    case "1":
-                        this.n3 = parseInt(this.n1) + parseInt(this.n2);
-                        break;
-                    case "2":
-                        this.n3 = this.n1 - this.n2;
-                        break;
-                    case "3":
-                        this.n3 = this.n1 * this.n2;
-                        break;
-                    case "4":
-                        this.n3 = this.n1 / this.n2;
-                        break;
-                    default:
-                        break;
-                }
+  var vm = new Vue({
+    el: '#app',
+    data() {
+      return {
+        n1: 3,
+        n2: 5,
+        n3: 8,
+        selvalue: "1"
+      }
+    },
+    methods: {
+      onChange() {
+        switch (this.selvalue) {
+          case "1":
+            this.n3 = parseInt(this.n1) + parseInt(this.n2);
+            break;
+          case "2":
+            this.n3 = this.n1 - this.n2;
+            break;
+          case "3":
+            this.n3 = this.n1 * this.n2;
+            break;
+          case "4":
+            this.n3 = this.n1 / this.n2;
+            break;
+          default:
+            break;
+        }
 
-            }
-        },
-    })
+      }
+    },
+  })
 </script>
 
 
