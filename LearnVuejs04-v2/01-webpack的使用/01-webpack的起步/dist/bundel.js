@@ -65,16 +65,21 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__info_js__ = __webpack_require__(2);
 const {
   sum,
   mul
 } = __webpack_require__(1)
 
-console.log(sum(10, 20));
 
-console.log(mul(4, 5));
+
+console.log(sum(10, 20))
+console.log(mul(4, 5))
+console.log(__WEBPACK_IMPORTED_MODULE_0__info_js__["a" /* obj */])
 
 /***/ }),
 /* 1 */
@@ -92,6 +97,19 @@ module.exports = {
   sum,
   mul
 }
+
+/***/ }),
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return obj; });
+const obj = {
+  name: '胡伟',
+  age: 18,
+  girlFriend: '刘丹丹'
+}
+
 
 /***/ })
 /******/ ]);

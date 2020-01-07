@@ -3,6 +3,10 @@ const {
   mul
 } = require('./mathUtils')
 
-console.log(sum(10, 20));
+import {
+  obj
+} from './info.js'
 
-console.log(mul(4, 5));
+console.log(sum(10, 20))
+console.log(mul(4, 5))
+console.log(obj)
