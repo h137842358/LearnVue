@@ -396,10 +396,7 @@ function toComment(sourceMap) {
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__js_info__ = __webpack_require__(4);
-const {
-  sum,
-  mul
-} = __webpack_require__(3).default
+const { sum, mul } = __webpack_require__(3).default
 
 
 
@@ -407,9 +404,18 @@ __webpack_require__(5)
 
 __webpack_require__(7)
 
+document.writeln('<h2>你好啊，李银河</h2>')
+
+__webpack_require__(9)
+
+document.writeln(
+  '<input type="image" src="./dist/43bf84bbb4293ede71e2eeec931fffcb.jpg" alt="">'
+)
+
 console.log(sum(10, 20))
 console.log(mul(4, 5))
 console.log(__WEBPACK_IMPORTED_MODULE_0__js_info__["a" /* obj */])
+
 
 /***/ }),
 /* 3 */
@@ -520,6 +526,14 @@ exports.push([module.i, "body {\n  color: yellow;\n  font-size: 50px;\n}\n", ""]
 // Exports
 module.exports = exports;
 
+
+/***/ }),
+/* 9 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "43bf84bbb4293ede71e2eeec931fffcb.jpg");
 
 /***/ })
 /******/ ]);
