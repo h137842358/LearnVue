@@ -1,7 +1,7 @@
 const {
   sum,
   mul
-} = require('./js/mathUtils')
+} = require('./js/mathUtils').default
 
 import {
   obj
