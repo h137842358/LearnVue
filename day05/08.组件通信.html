@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../node_modules/vue/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id='app'>
+    <mycpn v-bind:son-msg="msg" v-on:func="getObj" v-bind:cmovies="movies"></mycpn>
+  </div>
+</body>
+<template id='tmp1'>
+  <div>
+    <h1>这是子组件--{{sonMsg}}</h1>
+    <input type="button" value="发送" @click='sendObj'>
+  </div>
+</template>
+<script>
+  const vm = new Vue({
+    el: '#app',
+    data() {
+      return {
+        msg: '父组件的msg消息',
+        movies: ['海王', '海王2', '海王3', '海王4']
+      }
+    },
+    methods: {
+      getObj(obj) {
+        console.log(obj);
+      }
+    },
+    components: {
+      mycpn: {
+        template: '#tmp1',
+        //props: ['sonMsg'],
+        props: {
+          sonMsg: {
+            type: String,
+            default: 'aaaa',
+            required: true
+          },
+          //类型是对象或者数组时，默认值必须是一个函数
+          cmovies: {
+            type: Array,
+            default () {
+              return []
+            }
+          }
+        },
+        data() {
+          return {
+            obj: {
+              id: '2014021459',
+              name: '胡伟',
+              age: 18
+            }
+          }
+        },
+        methods: {
+          sendObj() {
+            this.$emit('func', this.obj)
+          }
+        },
+      }
+    }
+  })
+</script>
+
+</html>
