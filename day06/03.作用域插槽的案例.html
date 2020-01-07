@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../node_modules/vue/dist/vue.js"></script>
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+
+<body>
+  <div id='app'>
+    <tmp1>
+    </tmp1>
+
+    <tmp1>
+      <div slot-scope="slot">
+        <!-- <span v-for="(item, index) in slot.data" :key="index">{{item}} *</span> -->
+        <span>{{slot.data.join(' * ')}}</span>
+      </div>
+    </tmp1>
+  </div>
+</body>
+<template id='tmp1'>
+  <div>
+    <slot :data="pLanguage">
+      <ul class="list-group">
+        <li class="list-group-item" v-for="(item, index) in pLanguage" :key="index">{{item}}</li>
+      </ul>
+    </slot>
+  </div>
+
+</template>
+<script>
+  const vm = new Vue({
+    el: '#app',
+    data() {
+      return {
+
+      }
+    },
+    components: {
+      tmp1: {
+        template: '#tmp1',
+        data() {
+          return {
+            pLanguage: ['语文', '数学', '英语', '计算机']
+          }
+        },
+      }
+    }
+  })
+</script>
+
+</html>

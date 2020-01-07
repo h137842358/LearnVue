@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../node_modules/vue/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id='app'>
+    <tmp1>
+      <span slot="left">左边的标题</span>
+      <input type="button" value="搜索" slot="middle">
+      <span>你好</span>
+    </tmp1>
+    <tmp1>
+      <input type="button" value="返回" slot="left">
+      <span slot="middle">标题</span>
+      <input type="button" value="搜索" slot="right">
+    </tmp1>
+  </div>
+</body>
+<template id='tmp1'>
+  <div>
+    <slot name='left'>左边</slot>
+    <slot name='middle'>中间</slot>
+    <slot name='right'>右边</slot>
+    <slot><span>哈哈哈</span></slot>
+  </div>
+</template>
+<script>
+  var vm = new Vue({
+    el: '#app',
+    data() {
+      return {
+
+      }
+    },
+    components: {
+      tmp1: {
+        template: '#tmp1'
+      }
+    }
+  })
+</script>
+
+</html>

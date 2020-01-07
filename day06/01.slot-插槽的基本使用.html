@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../node_modules/vue/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id='app'>
+    <tmp1></tmp1>
+
+    <tmp1>
+      <h1>我是你爸爸</h1>
+    </tmp1>
+
+    <tmp1>
+      <div>
+        <p>你好</p>
+        <p>不好</p>
+      </div>
+    </tmp1>
+
+    <tmp1>
+      <p>数学</p>
+      <p>英语</p>
+    </tmp1>
+  </div>
+</body>
+<template id='tmp1'>
+  <div>
+    <h2>我是子组件</h2>
+    <p>我是程序员</p>
+    <input type="button" value="按钮">
+    <slot>
+      <p>默认值</p>
+    </slot>
+  </div>
+</template>
+<script>
+  var vm = new Vue({
+    el: '#app',
+    components: {
+      tmp1: {
+        template: '#tmp1'
+      }
+    }
+  })
+</script>
+
+</html>
