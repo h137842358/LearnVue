@@ -1,13 +1,15 @@
 const path = require('path')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
   entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, 'dist'), //动态获取路径
     filename: 'bundle.js',
-    publicPath: 'dist/'
+    // publicPath: 'dist/'
   },
   module: {
     rules: [{
@@ -72,6 +74,17 @@ module.exports = {
   },
   plugins: [
     new VueLoaderPlugin(),
-    new webpack.BannerPlugin('最终版权归胡伟所有')
-  ]
+    new webpack.BannerPlugin('最终版权归胡伟所有'),
+    new HtmlWebpackPlugin({
+      template: 'index.html'
+    }),
+    new UglifyJsPlugin(),
+    new webpack.HotModuleReplacementPlugin()
+  ],
+  devServer: {
+    contentBase: "./dist",
+    hot: true,
+    inline: true,
+    open: true
+  },
 }
