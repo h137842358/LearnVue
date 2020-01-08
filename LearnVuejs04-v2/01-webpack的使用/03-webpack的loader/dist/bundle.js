@@ -391,59 +391,66 @@ function toComment(sourceMap) {
 
 /***/ }),
 /* 2 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__js_info__ = __webpack_require__(4);
-const {
-  sum,
-  mul
-} = __webpack_require__(3).default
 
 
+var _info = __webpack_require__(3);
 
-__webpack_require__(5)
+var _require$default = __webpack_require__(4).default,
+    sum = _require$default.sum,
+    mul = _require$default.mul;
 
-__webpack_require__(9)
+__webpack_require__(5);
 
-document.writeln('<h2>你好啊，李银河</h2>')
+__webpack_require__(9);
 
-console.log(sum(10, 20))
-console.log(mul(4, 5))
-console.log(__WEBPACK_IMPORTED_MODULE_0__js_info__["a" /* obj */])
+document.writeln('<h2>你好啊，李银河</h2>');
+
+console.log(sum(10, 20));
+console.log(mul(4, 5));
+console.log(_info.obj);
 
 /***/ }),
 /* 3 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-function sum(num1, num2) {
-  return num1 + num2
-}
 
-function mul(num1, num2) {
-  return num1 * num2
-}
 
-/* harmony default export */ __webpack_exports__["default"] = ({
-  sum,
-  mul
+Object.defineProperty(exports, "__esModule", {
+  value: true
 });
-
-/***/ }),
-/* 4 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return obj; });
-const obj = {
+var obj = {
   name: '胡伟',
   age: 18,
   girlFriend: '刘丹丹'
+};
+exports.obj = obj;
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+function sum(num1, num2) {
+  return num1 + num2;
 }
 
+function mul(num1, num2) {
+  return num1 * num2;
+}
+
+exports.default = {
+  sum: sum,
+  mul: mul
+};
 
 /***/ }),
 /* 5 */
