@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+  // var timer = setTimeout(() => {
+  //   console.log('helloworld');
+  // }, 1000)
+
+  //resolve ,reject本身他们又是函数
+  //链式编程
+  // new Promise((resolve, reject) => {
+  //   //第一次网络请求的代码
+  //   setTimeout(() => {
+  //     resolve()
+  //   }, 1000)
+  // }).then(() => {
+  //   //第一次拿到结果的处理代码
+  //   console.log('hello world');
+  //   console.log('hello world');
+  //   console.log('hello world');
+  //   console.log('hello world');
+  //   console.log('hello world');
+
+  //   return new Promise((resolve, reject) => {
+  //     //第二次网络请求的代码
+  //     setTimeout(() => {
+  //       resolve()
+  //     }, 1000)
+  //   }).then(() => {
+  //     //第二次处理的代码
+  //     console.log('hello VueJs');
+  //     console.log('hello VueJs');
+  //     console.log('hello VueJs');
+  //     console.log('hello VueJs');
+  //     console.log('hello VueJs');
+
+  //     return new Promise((resolve, reject) => {
+  //       //第三次网络请求的代码
+  //       setTimeout(() => {
+  //         resolve()
+  //       }, 1000)
+  //     }).then(() => {
+  //       //第三次处理的代码
+  //       console.log('hello Java');
+  //       console.log('hello Java');
+  //       console.log('hello Java');
+  //       console.log('hello Java');
+  //       console.log('hello Java');
+  //     })
+  //   })
+  // })
+
+
+  //1.什么情况下会用到promise？一般情况下是有异步操作时，使用
+  //Promise对这个异步操作进行封装
+  new Promise((resolve, reject) => {
+    let condition = false
+    if (condition) {
+      //这里的‘Hello World’传递的是网络请求传回的数据data
+      resolve('Hello World')
+    } else {
+      reject('error')
+    }
+  }).then((data) => {
+    //处理代码
+    console.log(data);
+  }).catch((err) => {
+    console.log(err);
+  })
+</script>
+
+</html>

@@ -1,9 +1,15 @@
 <template>
   <div id="tab-bar">
-    <tab-bar-item v-for="index in 4" :key="index">
-      <img slot="item-icon" v-if="isActive" :src="imageListActive[index-1]" />
-      <img slot="item-icon" v-else="isActive" :src="imageList[index-1]" />
-      <div slot="item-text" :class="{active:isActive}">{{textList[index-1]}}</div>
+    <tab-bar-item
+      v-for="index in 4"
+      :key="index"
+      :routerLink="routerPathList[index-1]"
+      :activeColor="colorList[index-1]"
+      text="大家好"
+    >
+      <img slot="item-icon-active" :src="imageListActive[index-1]" />
+      <img slot="item-icon" :src="imageList[index-1]" />
+      <div slot="item-text">{{textList[index-1]}}</div>
     </tab-bar-item>
   </div>
 </template>
@@ -26,11 +32,17 @@ export default {
         require('../../assets/img/tabbar/4.1.png')
       ],
       textList: ['首页', '分类', '购物车', '我的'],
-      isActive: true
+      routerPathList: ['/home', '/category', '/cart', '/profile'],
+      colorList: ['red', 'yellow', 'blue', 'green']
     }
   },
   components: {
     TabBarItem
+  },
+  methods: {
+    toggle() {
+      this.isActive = !this.isActive
+    }
   }
 }
 </script>

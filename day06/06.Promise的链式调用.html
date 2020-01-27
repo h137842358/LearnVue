@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+  // new Promise((resolve, reject) => {
+  //   setTimeout(() => {
+  //     resolve('aaa')
+  //   }, 1000);
+  // }).then(res => {
+  //   console.log(res, '第一层的10行处理代码');
+  //   return Promise.resolve(res + '111')
+  // }).then(res => {
+  //   console.log(res, '第二层的10行代码');
+  //   return Promise.resolve(res + '222')
+  // }).then(res => {
+  //   console.log(res, '第三层的10行处理代码');
+  // })
+
+  new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve('aaa')
+    }, 1000);
+  }).then(res => {
+    console.log(res, '第一层的10行处理代码');
+    return res + '111'
+  }).then(res => {
+    console.log(res, '第二层的10行代码');
+    return res + '222'
+  }).then(res => {
+    console.log(res, '第三层的10行处理代码');
+  })
+</script>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+  Promise.all([new Promise((resolve, reject) => {
+      // $.ajax({
+      //   type: "GET", //默认get
+      //   url: "url", //默认当前页
+      //   data: "data", //格式{key:value}
+      //   dataType: "json",
+      //   beforeSend: function () {}, //请求发送前回调,常用验证
+      //   success: function (response) { //请求成功回调
+      //     resolve(response)
+      //   },
+      //   error: function (e) { //请求超时回调
+      //     if (e.statusText == "timeout") {
+      //       alert("请求超时")
+      //     }
+      //   },
+      //   complete: function () {}, //无论请求是成功还是失败都会执行的回调，常用全局成员的释放，或者页面状态的重置
+      // })
+      setTimeout(() => {
+        resolve('result1')
+      }, 2000);
+    }),
+    new Promise((resolve, reject) => {
+      // $.ajax({
+      //   type: "POST", //默认get
+      //   url: "url", //默认当前页
+      //   data: "data", //格式{key:value}
+      //   dataType: "json",
+      //   beforeSend: function () {}, //请求发送前回调,常用验证
+      //   success: function (response) { //请求成功回调
+      //     resolve(response)
+      //   },
+      //   error: function (e) { //请求超时回调
+      //     if (e.statusText == "timeout") {
+      //       alert("请求超时")
+      //     }
+      //   },
+      //   complete: function () {}, //无论请求是成功还是失败都会执行的回调，常用全局成员的释放，或者页面状态的重置
+      // })
+      setTimeout(() => {
+        resolve('result2')
+      }, 1000);
+    })
+  ]).then(results => {
+    console.log(results);
+  })
+</script>
+
+</html>

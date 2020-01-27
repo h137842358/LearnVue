@@ -1,7 +1,16 @@
 <template>
   <div class="tab-bar-item">
-    <slot name="item-icon"></slot>
-    <slot name="item-text"></slot>
+    <router-link :to="routerLink" tag="span">
+      <div v-if="isActive">
+        <slot name="item-icon-active"></slot>
+      </div>
+      <div v-else>
+        <slot name="item-icon"></slot>
+      </div>
+      <div :style="ActiveColor">
+        <slot name="item-text"></slot>
+      </div>
+    </router-link>
   </div>
 </template>
 
@@ -9,7 +18,25 @@
 export default {
   data() {
     return {}
-  }
+  },
+  computed: {
+    isActive() {
+      return this.$route.path.indexOf(this.routerLink) !== -1
+    },
+    ActiveColor() {
+      // console.log(this.text)
+      return this.isActive ? { color: this.activeColor } : {}
+    }
+  },
+  props: {
+    routerLink: String,
+    activeColor: {
+      type: String,
+      default: 'red'
+    },
+    text: String
+  },
+  methods: {}
 }
 </script>
 
